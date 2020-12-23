@@ -15,6 +15,7 @@ interface BaseButtonProps {
     text?: string;
     type?: 'primary' | 'secondary';
     outlined?: boolean;
+    small?: boolean;
 }
 
 export const BaseButton: React.FC<BaseButtonProps> = ({
@@ -24,6 +25,7 @@ export const BaseButton: React.FC<BaseButtonProps> = ({
     type,
     outlined,
     style,
+    small,
 }) => {
     const buttonStyles: Array<StyleProp<object>> = [styles.button, style];
     const textStyles: Array<StyleProp<object>> = [styles.text];
@@ -48,6 +50,13 @@ export const BaseButton: React.FC<BaseButtonProps> = ({
         }
     }
 
+    if (small) {
+        buttonStyles.push({ height: 30, padding: 10 });
+        textStyles.push({ fontSize: 10 });
+    } else {
+        buttonStyles.push({ width: screen.width - 58, height: 50 });
+    }
+
     return (
         <TouchableOpacity onPress={onPress} style={buttonStyles}>
             {!!children ? (
@@ -66,8 +75,6 @@ const screen = Dimensions.get('window');
 const styles = StyleSheet.create({
     button: {
         borderRadius: 12,
-        width: screen.width - 58,
-        height: 50,
     },
     primaryButton: {
         borderColor: 'transparent',

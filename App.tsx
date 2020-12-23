@@ -1,6 +1,7 @@
 import React from 'react';
-import { AuthenticationRoutes } from './src/views';
 import { useFonts } from 'expo-font';
+import { Main } from './src/main';
+import { StatusBar } from 'react-native';
 
 export default function App() {
     const [loaded] = useFonts({
@@ -13,5 +14,10 @@ export default function App() {
         return null;
     }
 
-    return <AuthenticationRoutes />;
+    return (
+        <>
+            <StatusBar backgroundColor="#5840ff" />
+            <Main />
+        </>
+    );
 }
